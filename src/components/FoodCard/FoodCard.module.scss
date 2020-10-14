@@ -1,0 +1,281 @@
+$default-color: #1698d9;
+$hover-color: #2ea8e6;
+$selected-color: #d91667;
+$hover-selected-color: #e52e7a;
+$disabled-color: #b3b3b3;
+$disabled-text-color: #ffff66;
+
+$border-width: 4px;
+
+.card {
+  outline: 0;
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 509px;
+
+  border-radius: 12px;
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    flex-grow: 1;
+    box-sizing: border-box;
+    background-color: white;
+    border: $border-width solid $default-color;
+    border-top: 0;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+}
+
+$corner-side: 42px;
+$corner-border-width: 2.828px;
+$corner-square-half-diagonal: 59.397px;
+
+.topBorder {
+  display: flex;
+  width: 100%;
+}
+
+.corner {
+  position: relative;
+  width: $corner-side;
+  height: $corner-side;
+
+  background: linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 50%,
+    white 50%,
+    white 100%
+  );
+
+  &::before {
+    content: "";
+    display: block;
+    width: 200%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, 0) rotate(-45deg);
+    height: $border-width;
+    background-color: $default-color;
+  }
+}
+
+.filler {
+  display: block;
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: $corner-side;
+
+  box-sizing: border-box;
+  border: $border-width solid $default-color;
+  border-left: 0;
+  border-bottom: 0;
+  border-top-right-radius: 12px;
+
+  background-color: white;
+}
+
+.catImage {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: -88px;
+  width: 368px;
+  height: auto;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
+
+  flex-grow: 1;
+  padding: 21px 16px 16px 51px;
+}
+
+.tagline {
+  text-align: left;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.1875;
+
+  color: #666666;
+}
+
+.taglinePrimary {
+  text-align: left;
+  color: $hover-selected-color;
+}
+
+.title {
+  text-align: left;
+  margin-top: 5px;
+
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 1.16666667;
+
+  color: #000000;
+}
+
+.subtitle {
+  text-align: left;
+  margin-top: -1px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 1.16666667;
+
+  color: #000000;
+}
+
+.description {
+  text-align: left;
+  margin-top: 15px;
+
+  font-size: 14px;
+  line-height: 1.1428;
+
+  color: #666666;
+
+  & b {
+    font-weight: bold;
+  }
+}
+
+.weight {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+  background: $default-color;
+}
+
+.weightValue {
+  display: block;
+  font-size: 42px;
+  line-height: 49px;
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.weightUnit {
+  display: block;
+  margin-top: -7px;
+
+  font-size: 21px;
+  line-height: 22px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.underCardMessage {
+  margin-top: 14px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 1.15384615;
+
+  text-align: center;
+  color: white;
+}
+
+.buyButton {
+  font-weight: bold;
+  color: $default-color;
+}
+
+@mixin dashedGradient($color) {
+  background-image: linear-gradient(to right, $color 60%, transparent 50%);
+}
+
+.buttonTextDashed {
+  @include dashedGradient($default-color);
+  background-position: 0 1.04em;
+  background-repeat: repeat-x;
+  background-size: 5px 1px;
+}
+
+@mixin applyColor($color) {
+  & .background::after {
+    border-color: $color;
+  }
+
+  & .corner::before {
+    background-color: $color;
+  }
+
+  & .filler {
+    border-color: $color;
+  }
+
+  & .weight {
+    background: $color;
+  }
+
+  & .buyButton {
+    color: $color;
+  }
+
+  & .buttonTextDashed {
+    @include dashedGradient($color);
+  }
+}
+
+.root:hover:not(.disabled) {
+  @include applyColor($hover-color);
+}
+
+.selected {
+  @include applyColor($selected-color);
+}
+
+.selected:hover:not(.lockHover) {
+  @include applyColor($hover-selected-color);
+}
+.disabled {
+  @include applyColor($disabled-color);
+
+  .underCardMessage {
+    color: $disabled-text-color;
+  }
+
+  .catImage,
+  .tagline,
+  .title,
+  .subtitle,
+  .description {
+    color: $disabled-color;
+    opacity: 0.5;
+  }
+}

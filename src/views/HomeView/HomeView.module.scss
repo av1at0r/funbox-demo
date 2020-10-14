@@ -1,0 +1,33 @@
+@import "../../styles/utils";
+
+.root {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 30px 0;
+  @include computedVhUnits(100, min-height);
+
+  &::before {
+    //ie align-items with min-height bug fix
+    content: "";
+    display: block;
+    width: 0;
+    height: calc(100vh - 60px);
+    box-sizing: border-box;
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  // margin: -40px;
+  overflow: hidden;
+}
+
+.listItem {
+  margin: 40px;
+}
