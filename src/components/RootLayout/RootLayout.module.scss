@@ -1,0 +1,7 @@
+@import "../../styles/utils";
+
+.root {
+  @include computedVhUnits(100, min-height);
+  background-image: url("../../images/bg-pattern.png");
+  background-repeat: repeat;
+}

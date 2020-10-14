@@ -1,0 +1,4 @@
+@mixin computedVhUnits($value: 100, $prop: height) {
+  #{$prop}: $value * 1vh;
+  #{$prop}: calc(var(--vh, 1vh) * #{$value});
+}
