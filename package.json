@@ -15,7 +15,7 @@
     "react-scripts": "3.4.3"
   },
   "scripts": {
-    "update-pages": "cp -r build/* gh-pages",
+    "deploy": "node gh-pages.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -36,5 +36,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "https://av1at0r.github.io/funbox-demo/"
 }
