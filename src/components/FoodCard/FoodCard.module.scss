@@ -256,7 +256,7 @@ $corner-square-half-diagonal: 59.397px;
   @include applyColor($hover-color);
 }
 
-.selected {
+.selected, .selected.lockHover:hover {
   @include applyColor($selected-color);
 }
 

@@ -50,7 +50,7 @@ export default function FoodCard({
     <div
       className={cn(classes.root, className, {
         [classes.selected]: selected,
-        [classes.setLockHover]: lockHover,
+        [classes.lockHover]: lockHover,
         [classes.disabled]: disabled,
       })}
     >
