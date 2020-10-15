@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
+import "./styles/fonts.scss";
 import "./styles/global.scss";
 import observeVh from "./utils/observeVh";
 //Fix viewport units on mobile

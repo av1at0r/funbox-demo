@@ -46,17 +46,20 @@ export default function HomeView() {
   );
   return (
     <RootLayout contentClassName={classes.root}>
-      <ul className={classes.list}>
-        {items.map((item) => (
-          <li key={item.id} className={classes.listItem}>
-            <FoodCard
-              selected={selected[item.id]}
-              onClick={handleClick}
-              {...item}
-            />
-          </li>
-        ))}
-      </ul>
+      <div>
+        <h1 className={classes.title}>Ты сегодня покормил кота?</h1>
+        <ul className={classes.list}>
+          {items.map((item) => (
+            <li key={item.id} className={classes.listItem}>
+              <FoodCard
+                selected={selected[item.id]}
+                onClick={handleClick}
+                {...item}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </RootLayout>
   );
 }
